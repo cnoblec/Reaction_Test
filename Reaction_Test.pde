@@ -1,5 +1,9 @@
 float circleX = -100;
 float circleY = -100;
+float diam = 0;
+float a = 0;
+float b = 0;
+float c = 0;
 
 void setup()
 {
@@ -25,9 +29,9 @@ void draw()
   line(360, 260, 380, 260);
   noStroke();
   fill(255);
-  ellipse(circleX, circleY, 50, 50);
+  ellipse(circleX, circleY, diam, diam);
 
-  if (mouseX > 340 && mouseX < 360 && mouseY > 220 && mouseY < 280 && frameCount % 60 == 0)
+  if (mouseX > 320 && mouseX < 380 && mouseY > 220 && mouseY < 280 && frameCount % 60 == 0)
   {
     newCircle();
   } 
@@ -39,15 +43,19 @@ void draw()
       circleY = -100;
     }
   }
+  
 }
 
 void mouseClicked()
 {
-
+  a = mouseX - circleX; //horizontal leg of the triangle
+  b = mouseY - circleY; //vert leg of tirangle
+  c = sqrt(a*a + b*b); //use pythagorean theorem to the the hypotenuse
+  println("c = " + c);
 }
 void newCircle()
 {
+  diam = 50;
   circleX = floor(random(50, 650));
-
   circleY = floor(random(50, 450));
 }
