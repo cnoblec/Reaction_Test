@@ -1,9 +1,10 @@
 float circleX = -100;
 float circleY = -100;
-float diam = 0;
-float a = 0;
-float b = 0;
-float c = 0;
+float diam = 0;                                          //diameter
+float a = 0;                                             //to use for pythagaron theorem 
+float b = 0;                                             //to use for pythagaron theorem 
+float c = 0;                                             //to use for pythagaron theorem 
+boolean target = false;                                  //wheather or not the target is on the screen
 
 void setup()
 {
@@ -13,7 +14,7 @@ void setup()
 void draw()
 {
   background(0);
-  stroke(0, 360, 0);
+  stroke(0, 360, 0); //set the color of the lines to green
   strokeWeight(1);
   //top left
   line(340, 240, 340, 220);
@@ -31,7 +32,7 @@ void draw()
   fill(255);
   ellipse(circleX, circleY, diam, diam);
 
-  if (mouseX > 320 && mouseX < 380 && mouseY > 220 && mouseY < 280 && frameCount % 60 == 0)
+  if (mouseX > 320 && mouseX < 380 && mouseY > 220 && mouseY < 280 && frameCount % 60 == 0 )
   {
     newCircle();
   } 
@@ -43,15 +44,35 @@ void draw()
       circleY = -100;
     }
   }
-  
+  // text("mouseX is: " +mouseX, mouseX, mouseY+10);
+  // text("mouseY is: " +mouseY, mouseX, mouseY);
+  if (circleX == -100 && circleY == -100)
+  {
+    target = false;
+  } else
+  {
+    target = true;
+  }
 }
 
-void mouseClicked()
+void mouseReleased()
 {
-  a = mouseX - circleX; //horizontal leg of the triangle
-  b = mouseY - circleY; //vert leg of tirangle
-  c = sqrt(a*a + b*b); //use pythagorean theorem to the the hypotenuse
+  a = mouseX - circleX;                                  //horizontal leg of the triangle
+  b = mouseY - circleY;                                  //vert leg of tirangle
+  c = sqrt(a*a + b*b);                                   //use pythagorean theorem to the the hypotenuse
   println("c = " + c);
+
+  //check the click to see if it is in the circle
+  if (c < diam/2) 
+  {
+    println("hit");
+    circleX = -100;              
+    circleY = -100;
+  } 
+  else
+  {
+    println("miss");
+  }
 }
 void newCircle()
 {
