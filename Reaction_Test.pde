@@ -5,6 +5,8 @@ float a = 0;                                             //to use for pythagaron
 float b = 0;                                             //to use for pythagaron theorem 
 float c = 0;                                             //to use for pythagaron theorem 
 boolean target = false;                                  //wheather or not the target is on the screen
+int hits = 0;
+int miss = 0;
 
 void setup()
 {
@@ -53,13 +55,16 @@ void draw()
   {
     target = true;
   }
+  textSize(32);
+  fill(0, 360, 0);
+  text("Hits: " + hits, 285, 50);
 }
 
 void mouseReleased()
 {
-  a = mouseX - circleX;                                  //horizontal leg of the triangle
-  b = mouseY - circleY;                                  //vert leg of tirangle
-  c = sqrt(a*a + b*b);                                   //use pythagorean theorem to the the hypotenuse
+  a = mouseX - circleX;   //horizontal leg of the triangle
+  b = mouseY - circleY;   //vert leg of tirangle
+  c = sqrt(a*a + b*b);    //use pythagorean theorem to the the hypotenuse
   println("c = " + c);
 
   //check the click to see if it is in the circle
@@ -68,6 +73,7 @@ void mouseReleased()
     println("hit");
     circleX = -100;              
     circleY = -100;
+    hits = hits + 1;
   } 
   else
   {
