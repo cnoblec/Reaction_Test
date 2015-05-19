@@ -4,7 +4,7 @@ float diam = 0;                                          //diameter
 float a = 0;                                             //to use for pythagaron theorem 
 float b = 0;                                             //to use for pythagaron theorem 
 float c = 0;                                             //to use for pythagaron theorem 
-boolean target = false;                                  //wheather or not the target is on the screen
+boolean target = false;                                  //whether or not the target is on the screen
 int hits = 0;
 int miss = 0;
 
@@ -48,16 +48,11 @@ void draw()
   }
   // text("mouseX is: " +mouseX, mouseX, mouseY+10);
   // text("mouseY is: " +mouseY, mouseX, mouseY);
-  if (circleX == -100 && circleY == -100)
-  {
-    target = false;
-  } else
-  {
-    target = true;
-  }
+
   textSize(32);
   fill(0, 360, 0);
-  text("Hits: " + hits, 285, 50);
+  text("Hits: " + hits, 285, 30);
+  text("Misses: " + miss, 285, 60);
 }
 
 void mouseReleased()
@@ -78,6 +73,7 @@ void mouseReleased()
   else
   {
     println("miss");
+    miss = miss + 1;
   }
 }
 void newCircle()
