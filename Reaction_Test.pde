@@ -4,10 +4,11 @@ float diam = 0;                                          //diameter
 float a = 0;                                             //to use for pythagaron theorem 
 float b = 0;                                             //to use for pythagaron theorem 
 float c = 0;                                             //to use for pythagaron theorem 
-boolean target = false;                                  //whether or not the target is on the screen
 int hits = 0;
 int miss = 0;
+int counted = 0;
 int counter = 0;
+boolean counterFull = false;
 
 void setup()
 {
@@ -16,6 +17,7 @@ void setup()
 
 void draw()
 {
+  
   frameRate = 60;
   background(0);
   stroke(0, 360, 0); //set the color of the lines to green
@@ -35,6 +37,9 @@ void draw()
   noStroke();
   fill(255);
   ellipse(circleX, circleY, diam, diam);
+  
+  counter = 10;
+  
 
   if (mouseX > 320 && mouseX < 380 && mouseY > 220 && mouseY < 280 && frameCount % 60 == 0 )
   {
@@ -45,25 +50,26 @@ void draw()
     {
       circleX = -100;
       circleY = -100;
+      println("moved");
+    
     }
   }
   // text("mouseX is: " +mouseX, mouseX, mouseY+10);
   // text("mouseY is: " +mouseY, mouseX, mouseY);
-  if ( circleX == -100 && circleY == 100)
-  {
-    target = false;
-  } 
-  else
-  {
-    target = true;
-  }
 
-  println("counter: " +counter);
+  // println("counter: " +counter);
   textSize(32);
   fill(0, 360, 0);
   text("Hits: " + hits, 285, 30);
   text("Misses: " + miss, 285, 60);
-  text("FPS: " +frameRate, 50, 50);
+  textSize(12);
+  text("FPS: " +frameRate, 25, 25);
+  
+  if (counted >= counter)
+  {
+   counterFull = true; 
+   println("counted = " + counted);
+  }
 }
 
 void mouseReleased()
@@ -71,7 +77,7 @@ void mouseReleased()
   a = mouseX - circleX;   //horizontal leg of the triangle
   b = mouseY - circleY;   //vert leg of tirangle
   c = sqrt(a*a + b*b);    //use pythagorean theorem to the the hypotenuse
-  println("c = " + c);
+
 
   //check the click to see if it is in the circle
   if (c < diam/2) 
@@ -88,8 +94,9 @@ void mouseReleased()
 }
 void newCircle()
 {
+  
   diam = 50;
   circleX = floor(random(50, 650));
   circleY = floor(random(50, 450));
-  counter = counter + 1;
+  counted = counted + 1;
 }
