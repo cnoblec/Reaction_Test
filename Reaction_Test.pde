@@ -16,6 +16,7 @@ void setup()
 
 void draw()
 {
+  frameRate = 60;
   background(0);
   stroke(0, 360, 0); //set the color of the lines to green
   strokeWeight(1);
@@ -58,11 +59,11 @@ void draw()
   }
 
   println("counter: " +counter);
-  
   textSize(32);
   fill(0, 360, 0);
   text("Hits: " + hits, 285, 30);
   text("Misses: " + miss, 285, 60);
+  text("FPS: " +frameRate, 50, 50);
 }
 
 void mouseReleased()
@@ -90,4 +91,5 @@ void newCircle()
   diam = 50;
   circleX = floor(random(50, 650));
   circleY = floor(random(50, 450));
+  counter = counter + 1;
 }
