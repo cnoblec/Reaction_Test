@@ -7,6 +7,7 @@ float c = 0;                                             //to use for pythagaron
 boolean target = false;                                  //whether or not the target is on the screen
 int hits = 0;
 int miss = 0;
+int counter = 0;
 
 void setup()
 {
@@ -37,8 +38,7 @@ void draw()
   if (mouseX > 320 && mouseX < 380 && mouseY > 220 && mouseY < 280 && frameCount % 60 == 0 )
   {
     newCircle();
-  } 
-  else
+  } else
   {
     if (frameCount % 60 == 0)
     {
@@ -48,7 +48,17 @@ void draw()
   }
   // text("mouseX is: " +mouseX, mouseX, mouseY+10);
   // text("mouseY is: " +mouseY, mouseX, mouseY);
+  if ( circleX == -100 && circleY == 100)
+  {
+    target = false;
+  } 
+  else
+  {
+    target = true;
+  }
 
+  println("counter: " +counter);
+  
   textSize(32);
   fill(0, 360, 0);
   text("Hits: " + hits, 285, 30);
@@ -69,8 +79,7 @@ void mouseReleased()
     circleX = -100;              
     circleY = -100;
     hits = hits + 1;
-  } 
-  else
+  } else
   {
     println("miss");
     miss = miss + 1;
