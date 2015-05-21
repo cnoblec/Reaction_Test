@@ -9,7 +9,8 @@ int miss = 0;
 int circlesCounted = 0;
 int totalCounter = 0;
 boolean counterFull = false;
-float hitMissPercent = 0;
+float hitPercent = 0;
+float missPercent = 0;
 
 void setup()
 {
@@ -42,7 +43,7 @@ void draw()
   totalCounter = 15;
 
 
-  if (mouseX > 320 && mouseX < 380 && mouseY > 220 && mouseY < 280 && frameCount % 60 == 0 )
+  if (mouseX > 320 && mouseX < 380 && mouseY > 220 && mouseY < 280 && frameCount % 60 == 0)
   {
     newCircle();
   } 
@@ -74,21 +75,20 @@ void draw()
   text("/" + totalCounter, 440, 90);
   textSize(12);
   text("FPS: " +frameRate, 25, 25);
-  println("totalCounter"+totalCounter);
-  hitMissPercent = (float) hits / (float) totalCounter * 100;
-
+  println("totalCounter" + totalCounter);
+  hitPercent = (float) hits / (float) totalCounter * 100;
+  missPercent = (float) miss / (float) totalCounter * 100;
 
 
   if (circlesCounted == totalCounter)
   {
-    text("hitMiss is: " + nf(hitMissPercent, 2, 1), 25, 75);
+    text("hitPercent is: " + nf(hitPercent, 2, 1), 25, 75);
+    text("missPercent is: " + nf(missPercent, 2, 1), 25, 100);
+
   }
   if (circlesCounted > totalCounter)
   {
     counterFull = true; 
-
-    println("hitMissPercent: " + hitMissPercent);
-    println("counted = " + circlesCounted);
     circlesCounted = 0;
     hits = 0;
     miss = 0;
@@ -105,13 +105,13 @@ void mouseReleased()
   //check the click to see if it is in the circle
   if (c < diam/2) 
   {
-    println("hit");
+    //println("hit");
     circleX = -100;              
     circleY = -100;
     hits = hits + 1;
   } else
   {
-    println("miss");
+    //println("miss");
     miss = miss + 1;
   }
 }
