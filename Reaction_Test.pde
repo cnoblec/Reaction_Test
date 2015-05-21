@@ -50,11 +50,12 @@ void draw()
     newCircle();
   } else
   {
-    if (frameCount % 60 == 0)
+    if (frameCount % 60 == 0 && circleX != -100 && circleY != -100)
     {
       circleX = -100;
       circleY = -100;
       println("moved");
+      miss = miss + 1;
     }
   }
 
