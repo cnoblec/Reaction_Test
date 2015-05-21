@@ -6,9 +6,10 @@ float b = 0;                                             //to use for pythagaron
 float c = 0;                                             //to use for pythagaron theorem 
 int hits = 0;
 int miss = 0;
-int counted = 0;
-int counter = 0;
+int circlesCounted = 0;
+int totalCounter = 0;
 boolean counterFull = false;
+float hitMissPercent = 0;
 
 void setup()
 {
@@ -38,7 +39,7 @@ void draw()
   fill(255);
   ellipse(circleX, circleY, diam, diam);
   
-  counter = 10;
+  totalCounter = 15;
   
 
   if (mouseX > 320 && mouseX < 380 && mouseY > 220 && mouseY < 280 && frameCount % 60 == 0 )
@@ -57,26 +58,35 @@ void draw()
   // text("mouseX is: " +mouseX, mouseX, mouseY+10);
   // text("mouseY is: " +mouseY, mouseX, mouseY);
 
-  // println("counter: " +counter);
+  // println("counter: " + counter);
   textSize(32);
   fill(0, 360, 0);
   text("Hits: " + hits, 285, 30);
   text("Misses: " + miss, 285, 60);
   textSize(12);
   text("FPS: " +frameRate, 25, 25);
-  
-  if (counted >= counter)
+  println("totalCounter"+totalCounter);
+  hitMissPercent = ((float) hits - (float) miss) / (float) totalCounter * 100;
+
+  text("hitMiss is: " + nf(hitMissPercent, 2, 1), 25, 75);
+  if (circlesCounted >= totalCounter)
   {
    counterFull = true; 
-   println("counted = " + counted);
+  
+   println("hitMissPercent: " + hitMissPercent);
+   println("counted = " + circlesCounted);
+   circlesCounted = 0;
+   hits = 0;
+   miss = 0; 
   }
+ 
 }
 
 void mouseReleased()
 {
-  a = mouseX - circleX;   //horizontal leg of the triangle
-  b = mouseY - circleY;   //vert leg of tirangle
-  c = sqrt(a*a + b*b);    //use pythagorean theorem to the the hypotenuse
+  a = mouseX - circleX; //horizontal leg of the triangle
+  b = mouseY - circleY; //vert leg of tirangle
+  c = sqrt(a*a + b*b); //use pythagorean theorem to the the hypotenuse
 
 
   //check the click to see if it is in the circle
@@ -94,9 +104,8 @@ void mouseReleased()
 }
 void newCircle()
 {
-  
   diam = 50;
   circleX = floor(random(50, 650));
   circleY = floor(random(50, 450));
-  counted = counted + 1;
+  circlesCounted = circlesCounted + 1;
 }
