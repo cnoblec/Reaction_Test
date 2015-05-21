@@ -40,14 +40,16 @@ void draw()
   fill(255);
   ellipse(circleX, circleY, diam, diam);
 
-  totalCounter = 15;
+  totalCounter = 25;
+  fill(0, 360, 0);
+  triangle(490, 62, 465, 62, 477, 50);
+  triangle(490, 95, 465, 95, 477, 107);
 
 
   if (mouseX > 320 && mouseX < 380 && mouseY > 220 && mouseY < 280 && frameCount % 60 == 0)
   {
     newCircle();
-  } 
-  else
+  } else
   {
     if (frameCount % 60 == 0)
     {
@@ -61,10 +63,12 @@ void draw()
   {
     textSize(16);
     fill(0, 360, 0);
-    text("Place cursor in the middle to ready up and return to the middle to show the next target", 0, 300);
+    text("Place cursor in the middle to ready up", 200, 300);
+    text("return to the middle to continue.", 215, 325);
   }
-  // text("mouseX is: " +mouseX, mouseX, mouseY+10);
-  // text("mouseY is: " +mouseY, mouseX, mouseY);
+  textSize(12);
+  text("mouseX is: " +mouseX, mouseX, mouseY+10);
+  text("mouseY is: " +mouseY, mouseX, mouseY);
 
   // println("counter: " + counter);
   textSize(32);
@@ -75,7 +79,6 @@ void draw()
   text("/" + totalCounter, 440, 90);
   textSize(12);
   text("FPS: " +frameRate, 25, 25);
-  println("totalCounter" + totalCounter);
   hitPercent = (float) hits / (float) totalCounter * 100;
   missPercent = (float) miss / (float) totalCounter * 100;
 
@@ -84,8 +87,8 @@ void draw()
   {
     text("hitPercent is: " + nf(hitPercent, 2, 1), 25, 75);
     text("missPercent is: " + nf(missPercent, 2, 1), 25, 100);
-
   }
+
   if (circlesCounted > totalCounter)
   {
     counterFull = true; 
@@ -101,7 +104,6 @@ void mouseReleased()
   b = mouseY - circleY; //vert leg of tirangle
   c = sqrt(a*a + b*b); //use pythagorean theorem to the the hypotenuse
 
-
   //check the click to see if it is in the circle
   if (c < diam/2) 
   {
@@ -114,11 +116,12 @@ void mouseReleased()
     //println("miss");
     miss = miss + 1;
   }
+  //if (mouseX > 
 }
 void newCircle()
 {
   diam = 50;
   circleX = floor(random(50, 650));
-  circleY = floor(random(50, 450));
+  circleY = floor(random(100, 450));
   circlesCounted = circlesCounted + 1;
 }
