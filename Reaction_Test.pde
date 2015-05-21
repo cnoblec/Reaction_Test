@@ -7,7 +7,7 @@ float c = 0;                                             //to use for pythagaron
 int hits = 0;
 int miss = 0;
 int circlesCounted = 0;
-int totalCounter = 0;
+int totalCounter = 25;
 boolean counterFull = false;
 float hitPercent = 0;
 float missPercent = 0;
@@ -40,7 +40,6 @@ void draw()
   fill(255);
   ellipse(circleX, circleY, diam, diam);
 
-  totalCounter = 25;
   fill(0, 360, 0);
   triangle(490, 62, 465, 62, 477, 50);
   triangle(490, 95, 465, 95, 477, 107);
@@ -96,6 +95,11 @@ void draw()
     hits = 0;
     miss = 0;
   }
+  
+  if(hits == 0 && circlesCounted == 0)
+  {
+   miss = 0; 
+  }
 }
 
 void mouseReleased()
@@ -116,7 +120,19 @@ void mouseReleased()
     //println("miss");
     miss = miss + 1;
   }
-  //if (mouseX > 
+  
+  if (mouseX > 465 && mouseX < 490 && mouseY < 62 && mouseY > 50)
+  {
+    totalCounter = totalCounter + 25;
+  }
+  if (mouseX > 465 && mouseX < 490 && mouseY < 107 && mouseY > 95)
+  {
+    totalCounter = totalCounter - 25;
+  }
+  if (totalCounter < 25)
+  {
+    totalCounter = 25;
+  }
 }
 void newCircle()
 {
