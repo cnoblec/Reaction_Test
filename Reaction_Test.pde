@@ -8,7 +8,6 @@ int hits = 0;
 int miss = 0;
 int circlesCounted = 0;
 int totalCounter = 25;
-boolean counterFull = false;
 float hitPercent = 0;
 float missPercent = 0;
 
@@ -69,7 +68,18 @@ void draw()
   textSize(12);
   text("mouseX is: " +mouseX, mouseX, mouseY+10);
   text("mouseY is: " +mouseY, mouseX, mouseY);
-
+  
+  text("Choose Target Colour: ", 50, 450);
+  fill(360, 0, 0);
+  ellipse(210, 445, 40, 40);
+  fill(0, 0, 360);
+  ellipse(255, 445, 40, 40);
+  fill(360, 0, 360);
+  ellipse(300, 445, 40, 40);
+  fill(0, 360, 0);
+  ellipse(345, 445, 40, 40);
+  fill(255);
+  ellipse(390, 445, 40, 40);
   // println("counter: " + counter);
   textSize(32);
   fill(0, 360, 0);
@@ -89,9 +99,8 @@ void draw()
     text("missPercent is: " + nf(missPercent, 2, 1), 25, 100);
   }
 
-  if (circlesCounted > totalCounter)
+  if (circlesCounted > totalCounter ||  key == 'R')
   {
-    counterFull = true; 
     circlesCounted = 0;
     hits = 0;
     miss = 0;
