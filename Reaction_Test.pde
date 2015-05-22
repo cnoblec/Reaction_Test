@@ -62,24 +62,26 @@ void draw()
   {
     textSize(16);
     fill(0, 360, 0);
-    text("Place cursor in the middle to ready up", 200, 300);
-    text("return to the middle to continue.", 215, 325);
+    text("Place cursor in the middle to ready up.", 200, 300);
+    text("Click on the target when it shows ", 215, 325);
+    text("then, return to the middle and continue.", 195, 350);
+    text("Choose Target Colour: ", 50, 450);
+    fill(360, 0, 0);
+    ellipse(210, 445, 40, 40);
+    fill(0, 0, 360);
+    ellipse(255, 445, 40, 40);
+    fill(360, 0, 360);
+    ellipse(300, 445, 40, 40);
+    fill(0, 360, 0);
+    ellipse(345, 445, 40, 40);
+    fill(255);
+    ellipse(390, 445, 40, 40);
   }
   textSize(12);
   text("mouseX is: " +mouseX, mouseX, mouseY+10);
   text("mouseY is: " +mouseY, mouseX, mouseY);
-  
-  text("Choose Target Colour: ", 50, 450);
-  fill(360, 0, 0);
-  ellipse(210, 445, 40, 40);
-  fill(0, 0, 360);
-  ellipse(255, 445, 40, 40);
-  fill(360, 0, 360);
-  ellipse(300, 445, 40, 40);
-  fill(0, 360, 0);
-  ellipse(345, 445, 40, 40);
-  fill(255);
-  ellipse(390, 445, 40, 40);
+
+
   // println("counter: " + counter);
   textSize(32);
   fill(0, 360, 0);
@@ -105,10 +107,10 @@ void draw()
     hits = 0;
     miss = 0;
   }
-  
-  if(hits == 0 && circlesCounted == 0)
+
+  if (hits == 0 && circlesCounted == 0)
   {
-   miss = 0; 
+    miss = 0;
   }
 }
 
@@ -130,15 +132,17 @@ void mouseReleased()
     //println("miss");
     miss = miss + 1;
   }
-  
+
   if (mouseX > 465 && mouseX < 490 && mouseY < 62 && mouseY > 50)
   {
     totalCounter = totalCounter + 25;
   }
+
   if (mouseX > 465 && mouseX < 490 && mouseY < 107 && mouseY > 95)
   {
     totalCounter = totalCounter - 25;
   }
+
   if (totalCounter < 25)
   {
     totalCounter = 25;
