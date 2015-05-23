@@ -126,6 +126,8 @@ void draw()
     text("then, return to the middle and continue.", 195, 350);
     text("Choose Target Colour: ", 50, 450);
     text("Current Target Looks Like: ", 50, 400);
+    text("Make Target Bigger", 360, 390);
+    text("Make Target Smaller", 360, 410);
     fill(360, 0, 0);
     ellipse(435, 445, 40, 40);
     fill(0, 0, 360);
@@ -281,6 +283,30 @@ void mouseReleased()
       red = 0;
       green = 0;
       blue = 360;
+    }
+    
+    //
+    //check if you pressed on make target bigger
+    //
+    if(mouseX > 360 && mouseX < 515 && mouseY > 375 && mouseY < 395)
+    {
+     diam = diam + 5; 
+    }
+    
+    //
+    //check if you pressed on make target smaller
+    //
+    if(mouseX > 360 && mouseX < 525 && mouseY > 395 && mouseY < 415)
+    {
+     diam = diam - 5; 
+    }
+    
+    //
+    //diam can not be smaller than 20
+    //
+    if(diam < 20)
+    {
+     diam = 20; 
     }
   }  
 
