@@ -1,6 +1,6 @@
-float circleX = -100;
-float circleY = -100;
-float diam = 0; //diameter of target
+float circleX = 295;
+float circleY = 395;
+float diam = 50; //diameter of target
 float a = 0; //to use for pythagaron theorem 
 float b = 0; //to use for pythagaron theorem 
 float c = 0; //to use for pythagaron theorem 
@@ -97,10 +97,12 @@ void draw()
     newCircle();
   } else
   {
+
     //
     //this is so the target only stays on the screen for 1 second
+    //only run the circle reset once the game is started (for the target display)
     //
-    if (frameCount % 60 == 0 && circleX != -100 && circleY != -100)
+    if (frameCount % 60 == 0 && circleX != -100 && circleY != -100 && circlesCounted > 0)
     {
       //
       //rest the coordinates for off the screen and add a miss
@@ -123,6 +125,7 @@ void draw()
     text("Click on the target when it shows ", 215, 325);
     text("then, return to the middle and continue.", 195, 350);
     text("Choose Target Colour: ", 50, 450);
+    text("Current Target Looks Like: ", 50, 400);
     fill(360, 0, 0);
     ellipse(435, 445, 40, 40);
     fill(0, 0, 360);
@@ -245,8 +248,8 @@ void mouseReleased()
     //
     if (mouseX > 325 && mouseX < 365 && mouseY > 425 && mouseY < 465)
     {
-      red = 360;
-      green = 0;
+      red = 0;
+      green = 360;
       blue = 0;
     }
 
@@ -295,7 +298,6 @@ void mouseReleased()
 //
 void newCircle()
 {
-  diam = 50;
   circleX = floor(random(50, 650));
   circleY = floor(random(100, 450));
   circlesCounted = circlesCounted + 1;
