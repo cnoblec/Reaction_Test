@@ -28,22 +28,22 @@ void draw()
   //set the framerate to 60
   //
   frameRate = 60;
-  
+
   //
   //make the background black
   //
   background(0);
- 
+
   //
   //set the color of the lines to green
   //
   stroke(0, 360, 0); 
-  
+
   //
   //width of the lines
   //
   strokeWeight(1);
-  
+
   //
   //top left
   //
@@ -54,29 +54,29 @@ void draw()
   //
   line(360, 240, 360, 220);
   line(360, 240, 380, 240);
-  
+
   //
   // bottom left
   //
   line(340, 260, 340, 280);
   line(340, 260, 320, 260);
-  
+
   //
   //bottom right
   //
   line(360, 260, 360, 280);
   line(360, 260, 380, 260);
-  
+
   //
   //no stroke (outline) on the circles
   //
   noStroke();
-  
+
   //
   //the changing colour of the target with its values
   //
   fill(red, green, blue);
-  
+
   //
   //the circle that is the target
   //
@@ -95,8 +95,7 @@ void draw()
   if (mouseX > 320 && mouseX < 380 && mouseY > 220 && mouseY < 280 && frameCount % 60 == 0)
   {
     newCircle();
-  } 
-  else
+  } else
   {
     //
     //this is so the target only stays on the screen for 1 second
@@ -112,7 +111,7 @@ void draw()
       miss = miss + 1;
     }
   }
-  
+
   //
   //only run this when the game hasnt started
   //
@@ -135,13 +134,13 @@ void draw()
     fill(255);
     ellipse(390, 445, 40, 40);
   }
-  
+
   //
   //this was used to display the mouse coordinates
   //
-  // textSize(12);
-  // text("mouseX is: " +mouseX, mouseX, mouseY+10);
-  // text("mouseY is: " +mouseY, mouseX, mouseY);
+  textSize(12);
+  text("mouseX is: " +mouseX, mouseX, mouseY+10);
+  text("mouseY is: " +mouseY, mouseX, mouseY);
 
   //
   //display text with your hits and misses and targets shown out of the total
@@ -154,7 +153,7 @@ void draw()
   text("/" + totalCounter, 440, 90);
   textSize(12);
   text("FPS: " +frameRate, 25, 25);
-  
+
   //
   //calculate your hit and miss percentage
   //
@@ -169,7 +168,7 @@ void draw()
     text("hitPercent is: " + nf(hitPercent, 2, 1), 25, 75);
     text("missPercent is: " + nf(missPercent, 2, 1), 25, 100);
   }
-  
+
   //
   //reset the game when you display one more target after your final score has been shown
   //
@@ -197,7 +196,7 @@ void mouseReleased()
   a = mouseX - circleX; //horizontal leg of the triangle
   b = mouseY - circleY; //vert leg of tirangle
   c = sqrt(a*a + b*b); //use pythagorean theorem to the the hypotenuse
-  
+
   //
   //check the click to see if it is in the circle
   //
@@ -210,21 +209,78 @@ void mouseReleased()
   } 
 
   //
-  //this checks if you click on the up total counter button
+  //this can only run when the game has not started
   //
-  if (mouseX > 465 && mouseX < 490 && mouseY < 62 && mouseY > 50)
+  if (circlesCounted == 0)
   {
-    totalCounter = totalCounter + 25;
-  }
 
-  //
-  //this checks if you pressed the down total counter button
-  //
-  if (mouseX > 465 && mouseX < 490 && mouseY < 107 && mouseY > 95)
-  {
-    totalCounter = totalCounter - 25;
-  }
-  
+    //
+    //this checks if you click on the up total counter button
+    //
+    if (mouseX > 465 && mouseX < 490 && mouseY < 62 && mouseY > 50)
+    {
+      totalCounter = totalCounter + 25;
+    }
+
+    //
+    //this checks if you pressed the down total counter button
+    //
+    if (mouseX > 465 && mouseX < 490 && mouseY < 107 && mouseY > 95)
+    {
+      totalCounter = totalCounter - 25;
+    }
+
+    //
+    //check if you pressed in the purple circle to change the colour
+    //
+    if (mouseX > 280 && mouseX < 320 && mouseY > 425 && mouseY < 465)
+    {
+      red = 360;
+      green = 0;
+      blue = 360;
+    }
+
+    //
+    //check if you pressed in the green circle to change colour
+    //
+    if (mouseX > 325 && mouseX < 365 && mouseY > 425 && mouseY < 465)
+    {
+      red = 360;
+      green = 0;
+      blue = 0;
+    }
+
+    //
+    //check if you pressed in the white circle to change colour
+    //
+    if (mouseX > 370 && mouseX < 410 && mouseY > 425 && mouseY < 465)
+    {
+      red = 360;
+      green = 360;
+      blue = 360;
+    }
+
+    //
+    //check if you pressed in the red circle
+    //
+    if (mouseX > 415 && mouseX < 455 && mouseY > 425 && mouseY < 465)
+    {
+      red = 360;
+      green = 0;
+      blue = 0;
+    }
+
+    //
+    //check if you pressed in the blue circle
+    //
+    if (mouseX > 235 && mouseX < 275 && mouseY > 425 && mouseY < 465)
+    {
+      red = 0;
+      green = 0;
+      blue = 360;
+    }
+  }  
+
   //
   //you cannot have less than 25 targets show
   //
