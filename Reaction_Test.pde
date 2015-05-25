@@ -82,12 +82,10 @@ void draw()
   //
   ellipse(circleX, circleY, diam, diam);
 
-  //
-  //the up and down arrows for the total targets shown
-  //
-  fill(0, 360, 0);
-  triangle(490, 62, 465, 62, 477, 50);
-  triangle(490, 95, 465, 95, 477, 107);
+
+  // fill(0, 360, 0);
+  // triangle(490, 62, 465, 62, 477, 50);
+  // triangle(490, 95, 465, 95, 477, 107);
 
   //
   //if the mouse is in the "ready" spot for 1 second the make a circle
@@ -143,9 +141,9 @@ void draw()
   //
   //this was used to display the mouse coordinates
   //
-  textSize(12);
-  text("mouseX is: " +mouseX, mouseX, mouseY+10);
-  text("mouseY is: " +mouseY, mouseX, mouseY);
+  // textSize(12);
+  // text("mouseX is: " +mouseX, mouseX, mouseY+10);
+  // text("mouseY is: " +mouseY, mouseX, mouseY);
 
   //
   //display text with your hits and misses and targets shown out of the total
@@ -170,8 +168,9 @@ void draw()
   //
   if (circlesCounted == totalCounter)
   {
-    text("hitPercent is: " + nf(hitPercent, 2, 1), 25, 75);
-    text("missPercent is: " + nf(missPercent, 2, 1), 25, 100);
+    textSize(16);
+    text("Hit Percentage is: " + nf(hitPercent, 2, 1), 25, 75);
+    text("Miss Percentage is: " + nf(missPercent, 2, 1), 25, 100);
   }
 
   //
@@ -190,6 +189,13 @@ void draw()
   if (circlesCounted == 0)
   {
     miss = 0;
+
+    //
+    //the up and down arrows for the total targets shown
+    //
+    fill(0, 360, 0);
+    triangle(490, 62, 465, 62, 477, 50);
+    triangle(490, 95, 465, 95, 477, 107);
   }
 }
 
@@ -205,7 +211,7 @@ void mouseReleased()
   //
   //check the click to see if it is in the circle
   //
-  if (c < diam/2) 
+  if (c < diam/2 && circlesCounted > 0) 
   {
     //println("hit");
     circleX = -100;              
@@ -218,7 +224,11 @@ void mouseReleased()
   //
   if (circlesCounted == 0)
   {
-
+    //
+    //in the start up screen keep the circle where the editing is
+    //
+    circleX = 295;
+    circleY = 395;
     //
     //this checks if you click on the up total counter button
     //
@@ -284,29 +294,34 @@ void mouseReleased()
       green = 0;
       blue = 360;
     }
-    
+
     //
     //check if you pressed on make target bigger
     //
-    if(mouseX > 360 && mouseX < 515 && mouseY > 375 && mouseY < 395)
+    if (mouseX > 360 && mouseX < 515 && mouseY > 375 && mouseY < 395)
     {
-     diam = diam + 5; 
+      diam = diam + 5;
     }
-    
+
     //
     //check if you pressed on make target smaller
     //
-    if(mouseX > 360 && mouseX < 525 && mouseY > 395 && mouseY < 415)
+    if (mouseX > 360 && mouseX < 525 && mouseY > 395 && mouseY < 415)
     {
-     diam = diam - 5; 
+      diam = diam - 5;
     }
-    
+
     //
     //diam can not be smaller than 20
     //
-    if(diam < 20)
+    if (diam < 20)
     {
-     diam = 20; 
+      diam = 20;
+    }
+
+    if (diam > 75)
+    {
+      diam = 75;
     }
   }  
 
